@@ -19,7 +19,7 @@ var containerId = process.env.DYNO && String(process.env.DYNO).replace(/\./g, '-
 var wrapper = {
   increment: function (key) {
     if (client) {
-      client.increment(key, 1);
+      client.increment(key);
     }
   },
 
