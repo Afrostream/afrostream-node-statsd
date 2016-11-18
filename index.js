@@ -17,9 +17,9 @@ if (cluster && cluster.worker && cluster.worker.id) {
 var containerId = process.env.DYNO && String(process.env.DYNO).replace(/\./g, '-') || "unknown";
 
 var wrapper = {
-  increment: function (key) {
+  increment: function (key, delta) {
     if (client) {
-      client.increment(key);
+      client.increment(key, delta || 1);
     }
   },
 
