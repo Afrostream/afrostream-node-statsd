@@ -79,7 +79,8 @@ var init = function (options) {
 var middleware = function (options) {
   var options = options || {};
   var start = new Date();
-  var route = 'route.' + (options.route || 'all');
+  var prefix = options.prefix || 'route';
+  var route = prefix + '.' + (options.route || 'all');
 
   return function (req, res, next) {
     res.once('finish', function() {
@@ -98,6 +99,11 @@ var middleware = function (options) {
   };
 };
 
+var escapeKey = function (s) {
+  return String(s || 'unknown').replace(/\./g, '-');
+};
+
 module.exports.client = wrapper;
 module.exports.init = init;
 module.exports.middleware = middleware;
+module.exports.escapeKey = escapeKey;
