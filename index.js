@@ -83,6 +83,7 @@ var middleware = function (options) {
   var route = prefix + '.' + (options.route || 'all');
 
   return function (req, res, next) {
+    wrapper.increment(route + '.hit');
     res.once('finish', function() {
       // nb requests
       if (res.statusCode === 200) {
